@@ -1,3 +1,4 @@
-from termcolor import colored
+from colorama import *
+init()
 
-print(colored('Crawling URL %s', 'red'))
+print(Fore.RED + "This is not red")
