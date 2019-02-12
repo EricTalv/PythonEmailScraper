@@ -9,9 +9,11 @@ from bs4 import BeautifulSoup
 #link = input("Insert a Link: ")
 link = 'https://veebisekretar.ee/'
 
-# Open url and store it 
-html = urlopen(link)
+# Open URL request on link 
+req = urlopen(link)
 
-soup = BeautifulSoup(html, 'html.parser')
+# Parse response HTML data 
+res = BeautifulSoup(req, 'html.parser')
 
-print(soup)
+# Print response data 
+print('Success \n', res)
