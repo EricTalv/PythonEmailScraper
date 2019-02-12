@@ -9,7 +9,7 @@ All of the scraping is done in `scrape.py`.
 # Theory
 
 *Picture:**
-
+<pre>
 SCRAPER <- Feed it a link
    |
    ▼
@@ -27,3 +27,4 @@ SCRAPER <- Feed it a link
   |
   ▼
 4.Repeate til no new links or emailes are found
+</pre>
