@@ -1,5 +1,4 @@
 # OBJECTIVE: Fetch html data from any given link
-# METHOD: Inspect-Element
 
 # Import libraries
 import re
@@ -8,13 +7,10 @@ import requests.exceptions
 from urllib.parse import urlsplit
 from collections import deque
 from bs4 import BeautifulSoup
-
-# Lets get the URL as client input
-#link = input("Insert a Link: ")
-link = 'https://veebisekretar.ee/'
+from termcolor import colored
 
 # starting url. replace google with your own url.
-starting_url = 'https://veebisekretar.ee/'
+starting_url = 'https://erictalv.github.io/'
 
 # a queue of urls to be crawled
 unprocessed_urls = deque([starting_url])
@@ -38,7 +34,7 @@ while len(unprocessed_urls):
     path = url[:url.rfind('/')+1] if '/' in parts.path else url
 
     # get url's content
-    print("Crawling URL %s" % url)
+    print(colored("Crawling URL %s" % url, 'red'))
     try:
         response = requests.get(url)
     except (requests.exceptions.MissingSchema, requests.exceptions.ConnectionError):
@@ -65,3 +61,5 @@ while len(unprocessed_urls):
         # add the new url to the queue if it was not in unprocessed list nor in processed list yet
         if not link in unprocessed_urls and not link in processed_urls:
             unprocessed_urls.append(link)
+
+
