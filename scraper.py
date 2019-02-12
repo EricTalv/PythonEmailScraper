@@ -4,13 +4,15 @@
 import re
 import requests
 import requests.exceptions
+import csv
 from urllib.parse import urlsplit
 from collections import deque
 from bs4 import BeautifulSoup
-from termcolor import colored
+from colorama import *
+init()
 
 # starting url. replace google with your own url.
-starting_url = 'https://erictalv.github.io/'
+starting_url = 'https://www.neti.ee/cgi-bin/teema/ARI/Byrooteenused/'
 
 # a queue of urls to be crawled
 unprocessed_urls = deque([starting_url])
@@ -34,7 +36,7 @@ while len(unprocessed_urls):
     path = url[:url.rfind('/')+1] if '/' in parts.path else url
 
     # get url's content
-    print(colored("Crawling URL %s" % url, 'red'))
+    print(Fore.RED + "Crawling URL %s" % url + Fore.WHITE)
     try:
         response = requests.get(url)
     except (requests.exceptions.MissingSchema, requests.exceptions.ConnectionError):
@@ -61,5 +63,22 @@ while len(unprocessed_urls):
         # add the new url to the queue if it was not in unprocessed list nor in processed list yet
         if not link in unprocessed_urls and not link in processed_urls:
             unprocessed_urls.append(link)
+
+# This is for writing a csv file
+'''
+with open('_EMAILS.csv', 'w') as emails_file:
+    writer = csv.writer(emails_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+
+    writer.writerow(emails)
+'''
+
+# A fancy bar
+def Bar(string_to_expand, length):
+    return (string_to_expand * (int(length/len(string_to_expand))+1))[:length]
+
+print(Back.GREEN + Bar('=', 100) + Back.BLACK)
+print(emails)
+
+
 
 
