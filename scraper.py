@@ -40,4 +40,7 @@ def log_error(e):
     print(e)
 
 
-simple_get(link)   
+html_data = simple_get(link)
+
+print(html_data)
+
