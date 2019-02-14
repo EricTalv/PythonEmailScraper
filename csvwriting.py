@@ -14,7 +14,7 @@ def write_csv(file_name, collection):
 
         print("Writing throught collections:")
         # For every item inside the collection write a row
-        for row in range(1, len(collection))
+        for row in range(1, len(collection)):
             print(row)
             writer.writerow(row)
 
