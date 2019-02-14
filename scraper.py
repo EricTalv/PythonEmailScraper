@@ -105,12 +105,16 @@ def end_scene():
     session_choice = input("Save emails as .CSV?").upper()
     if session_choice == 'Y':
             # Ask For path
-            email_path = input("Enter Path or Press Enter |Will save to root folder: "
-            if len(email_pat)                   
+            email_path = input("Enter Path or Leave Empty |Will save to root folder: "
+            if len(email_path) is 0:
+                # Save to root path
+            else:
+                # Parse Path
+                # Save to Path
+                               
     else:
-        # thinkin
-
-    sys.exit()
+         print("Session Ended.")
+         sys.exit()
 
 print(Back.GREEN + Bar('=', 100) + Back.BLACK)
 print("Emails Found:")
