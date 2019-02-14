@@ -37,7 +37,7 @@ def end_scene():
     print(Back.GREEN + Bar('=', 100) + Back.BLACK)
     print("[[Session Stopped]]")
     print("Emails Found:")
-    print(Fore.YELLOW)
+    print(Fore.CYAN)
     print(emails)
     print(Fore.WHITE)
     print(Back.GREEN + Bar('=', 50) + Back.BLACK)
