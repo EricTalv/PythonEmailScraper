@@ -12,7 +12,7 @@ from colorama import *
 init()
 
 # starting url. replace google with your own url.
-starting_url = 'https://www.neti.ee/cgi-bin/teema/ARI/Byrooteenused/'
+starting_url = 'https://erictalv.github.io./' #'https://www.neti.ee/cgi-bin/teema/ARI/Byrooteenused/'
 
 # UNCOMMENT THIS ON PRODUCTION
 # print(Fore.YELLOW + "~~~~Email Scraper v1~~~~" 
@@ -27,6 +27,34 @@ processed_urls = set()
 
 # a set of fetched emails
 emails = set()
+
+# A fancy bar
+def Bar(string_to_expand, length):
+    return (string_to_expand * (int(length/len(string_to_expand))+1))[:length]
+
+# Create End_Scene
+def end_scene():
+    print(Back.GREEN + Bar('=', 100) + Back.BLACK)
+    print("[[Session Stopped]]")
+    print("Emails Found:")
+    print(emails)
+    print(Back.GREEN + Bar('=', 50) + Back.BLACK)
+    
+    session_choice = input("Save emails as .CSV?").upper()
+    if session_choice == 'Y':
+            # Ask For path
+            email_path = input("Enter Path or Leave Empty |Will save to root folder: ")
+            if len(email_path) is 0:
+                # Save to root path
+                print("Path was empty, saving to root folder")
+            else:
+                # Parse Path
+                # Save to Path
+                print("Saving to Path: ")
+                               
+    else:
+         print("Session Ended.")
+         sys.exit()
 
 # process urls one by one from unprocessed_url queue until queue is empty
 while len(unprocessed_urls):
@@ -91,32 +119,7 @@ with open('_EMAILS.csv', 'w') as emails_file:
     writer.writerow(emails)
 '''
 
-# A fancy bar
-def Bar(string_to_expand, length):
-    return (string_to_expand * (int(length/len(string_to_expand))+1))[:length]
 
-def end_scene():
-    print(Back.GREEN + Bar('=', 100) + Back.BLACK)
-    print("[[Session Stopped]]")
-    print("Emails Found:")
-    print(emails)
-    print(Back.GREEN + Bar('=', 50) + Back.BLACK)
-    
-    session_choice = input("Save emails as .CSV?").upper()
-    if session_choice == 'Y':
-            # Ask For path
-            email_path = input("Enter Path or Leave Empty |Will save to root folder: ")
-            if len(email_path) is 0:
-                # Save to root path
-                print("Path was empty, saving to root folder")
-            else:
-                # Parse Path
-                # Save to Path
-                print("Saving to Path: ")
-                               
-    else:
-         print("Session Ended.")
-         sys.exit()
 
 end_scene()
 
