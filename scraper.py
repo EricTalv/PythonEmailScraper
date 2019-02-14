@@ -5,6 +5,8 @@ import re
 import requests
 import requests.exceptions
 import csv
+import signal
+import sys
 from urllib.parse import urlsplit
 from collections import deque
 from bs4 import BeautifulSoup
@@ -36,18 +38,35 @@ while len(unprocessed_urls):
     path = url[:url.rfind('/')+1] if '/' in parts.path else url
 
     # get url's content
-    print(Fore.RED + "Crawling URL %s" % url + Fore.WHITE)
+    print(Fore.CYAN + "Crawling URL %s" % url + Fore.WHITE)
     try:
         response = requests.get(url)
     except (requests.exceptions.MissingSchema, requests.exceptions.ConnectionError):
         # ignore pages with errors and continue with next url
         continue
 
+        # Check for CTRL+C interruption
+    except KeyboardInterrupt:
+        print("Crawling Stopped")
+        input("Emails Found")
+        print(emails)
+        sys.exit()
+
     # extract all email addresses and add them into the resulting set
     # You may edit the regular expression as per your requirement
     new_emails = set(re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", response.text, re.I))
     emails.update(new_emails)
-    print(emails)
+    
+    if len(new_emails) is 0:
+        print(Back.RED)        
+        print("No emails found")
+        print(Back.BLACK)
+    else:
+        print(Back.GREEN) 
+        print(new_emails)
+        print("Email Count: ", len(emails))
+        print(Back.BLACK)
+    
     # create a beutiful soup for the html document
     soup = BeautifulSoup(response.text, 'lxml')
 
