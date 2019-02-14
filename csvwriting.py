@@ -1,6 +1,6 @@
 import csv
 
-emails = {"em1", "em2", "em3"}
+emails = {"very@cool.net", "not@cool.eu", "email@cool.com"}
 
 print("Starting")
 # CSV Writer function
@@ -14,7 +14,7 @@ def write_csv(file_name, collection):
 
         print("Writing throught collections:")
         # For every item inside the collection write a row
-        for row in range(1, len(collection)):
+        for row in collection:
             print(row)
             writer.writerow(row)
 
