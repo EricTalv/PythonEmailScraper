@@ -121,6 +121,14 @@ with open('_EMAILS.csv', 'w') as emails_file:
     writer.writerow(emails)
 '''
 
+# CSV Writer function
+def write_csv(file_name, )
+    with open(file_name, 'w') as email_file:
+        writer = csv.writer(email_file)
+
+        for row in range(1, len(theset))
+            writer.writerow(row)
+
 
 
 end_scene()
