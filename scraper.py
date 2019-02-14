@@ -1,5 +1,3 @@
-# OBJECTIVE: Fetch html data from any given link
-
 # Import libraries
 import re
 import requests
@@ -17,8 +15,9 @@ init()
 starting_url = 'https://www.neti.ee/cgi-bin/teema/ARI/Byrooteenused/'
 
 # UNCOMMENT THIS ON PRODUCTION
-# print("Starting The Email Scraper v1" 
+# print(Fore.YELLOW + "~~~~Email Scraper v1~~~~" 
 # starting_url = input("Enter Website Link to Scrape: ")
+# print("Starting scraper.." + Fore.WHITE)
 
 # a queue of urls to be crawled
 unprocessed_urls = deque([starting_url])
@@ -51,9 +50,21 @@ while len(unprocessed_urls):
 
         # Check for CTRL+C interruption
     except KeyboardInterrupt:
-        print("Crawling Session Stopped")
-        print("Emails Found")
+        print(Back.GREEN + Bar('=', 100) + Back.BLACK)
+        print("[[Session Stopped]]")
+        print("Emails Found:")
         print(emails)
+        print(Back.GREEN + Bar('=', 50) + Back.BLACK)
+        session_continue = input("Would you Like to continue?[Y/N]:")
+        if session_continue is 'Y':
+            # Continue from last url and
+            # unprocessed url set
+        elif session_continue is 'N':
+            session_choice = input("Save emails as .CSV?").upper()
+            if session_choice is 'Y':
+                # Sae
+        
+
         sys.exit()
 
     # extract all email addresses and add them into the resulting set
@@ -100,6 +111,7 @@ def Bar(string_to_expand, length):
     return (string_to_expand * (int(length/len(string_to_expand))+1))[:length]
 
 print(Back.GREEN + Bar('=', 100) + Back.BLACK)
+print("Emails Found:")
 print(emails)
 
 
