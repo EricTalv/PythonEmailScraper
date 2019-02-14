@@ -16,6 +16,10 @@ init()
 # starting url. replace google with your own url.
 starting_url = 'https://www.neti.ee/cgi-bin/teema/ARI/Byrooteenused/'
 
+# UNCOMMENT THIS ON PRODUCTION
+# print("Starting The Email Scraper v1" 
+# starting_url = input("Enter Website Link to Scrape: ")
+
 # a queue of urls to be crawled
 unprocessed_urls = deque([starting_url])
 
