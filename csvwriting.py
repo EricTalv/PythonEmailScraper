@@ -4,10 +4,10 @@ emails = {"em1", "em2", "em3"}
 
 print("Starting")
 # CSV Writer function
-def write_csv(file_name, collection)
+def write_csv(file_name, collection):
     print("Open writer")
     # Open writer, set file_name
-    with open(file_name, 'w') as email_file:
+    with open(file_name + '.csv', 'w') as email_file:
         print("Pass Writer")
         # Pass email_file to writer
         writer = csv.writer(email_file)
@@ -18,5 +18,5 @@ def write_csv(file_name, collection)
             print(row)
             writer.writerow(row)
 
-
-
+write_csv('cool', emails)
+print("End.")
