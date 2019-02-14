@@ -37,10 +37,12 @@ def end_scene():
     print(Back.GREEN + Bar('=', 100) + Back.BLACK)
     print("[[Session Stopped]]")
     print("Emails Found:")
+    print(Fore.YELLOW)
     print(emails)
+    print(Fore.WHITE)
     print(Back.GREEN + Bar('=', 50) + Back.BLACK)
     
-    session_choice = input("Save emails as .CSV?").upper()
+    session_choice = input("Save emails as .CSV?[Y/]").upper()
     if session_choice == 'Y':
             # Ask For path
             email_path = input("Enter Path or Leave Empty |Will save to root folder: ")
@@ -90,10 +92,10 @@ while len(unprocessed_urls):
         print("No emails found")
         print(Back.BLACK)
     else:
-        print(Back.GREEN) 
+        print(Fore.GREEN) 
         print(new_emails)
         print("Email Count: ", len(emails))
-        print(Back.BLACK)
+        print(Fore.BLACK)
     
     # create a beutiful soup for the html document
     soup = BeautifulSoup(response.text, 'lxml')
