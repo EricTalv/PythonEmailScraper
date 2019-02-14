@@ -47,8 +47,8 @@ while len(unprocessed_urls):
 
         # Check for CTRL+C interruption
     except KeyboardInterrupt:
-        print("Crawling Stopped")
-        input("Emails Found")
+        print("Crawling Session Stopped")
+        print("Emails Found")
         print(emails)
         sys.exit()
 
