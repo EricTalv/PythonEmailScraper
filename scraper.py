@@ -50,23 +50,8 @@ while len(unprocessed_urls):
 
         # Check for CTRL+C interruption
     except KeyboardInterrupt:
-        print(Back.GREEN + Bar('=', 100) + Back.BLACK)
-        print("[[Session Stopped]]")
-        print("Emails Found:")
-        print(emails)
-        print(Back.GREEN + Bar('=', 50) + Back.BLACK)
-        session_continue = input("Would you Like to continue?[Y/N]:")
-        if session_continue is 'Y':
-            # Continue from last url and
-            # unprocessed url set
-        elif session_continue is 'N':
-            session_choice = input("Save emails as .CSV?").upper()
-            if session_choice is 'Y':
-                # Sae
+        end_scene()
         
-
-        sys.exit()
-
     # extract all email addresses and add them into the resulting set
     # You may edit the regular expression as per your requirement
     new_emails = set(re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", response.text, re.I))
@@ -109,6 +94,25 @@ with open('_EMAILS.csv', 'w') as emails_file:
 # A fancy bar
 def Bar(string_to_expand, length):
     return (string_to_expand * (int(length/len(string_to_expand))+1))[:length]
+
+def end_scene():
+    print(Back.GREEN + Bar('=', 100) + Back.BLACK)
+    print("[[Session Stopped]]")
+    print("Emails Found:")
+    print(emails)
+    print(Back.GREEN + Bar('=', 50) + Back.BLACK)
+    session_continue = input("Would you Like to continue?[Y/N]:")
+    if session_continue is 'Y':
+        # Continue from last url and
+        # unprocessed url set
+    elif session_continue is 'N':
+        session_choice = input("Save emails as .CSV?").upper()
+            if session_choice is 'Y':
+                # Save emails into a .CSV
+    else:
+        # thinkin
+
+    sys.exit()
 
 print(Back.GREEN + Bar('=', 100) + Back.BLACK)
 print("Emails Found:")
