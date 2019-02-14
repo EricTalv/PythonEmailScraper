@@ -101,14 +101,12 @@ def end_scene():
     print("Emails Found:")
     print(emails)
     print(Back.GREEN + Bar('=', 50) + Back.BLACK)
-    session_continue = input("Would you Like to continue?[Y/N]:")
-    if session_continue is 'Y':
-        # Continue from last url and
-        # unprocessed url set
-    elif session_continue is 'N':
-        session_choice = input("Save emails as .CSV?").upper()
-            if session_choice is 'Y':
-                # Save emails into a .CSV
+    
+    session_choice = input("Save emails as .CSV?").upper()
+    if session_choice == 'Y':
+            # Ask For path
+            email_path = input("Enter Path or Press Enter |Will save to root folder: "
+            if len(email_pat)                   
     else:
         # thinkin
 
