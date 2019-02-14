@@ -108,18 +108,17 @@ def end_scene():
             email_path = input("Enter Path or Leave Empty |Will save to root folder: "
             if len(email_path) is 0:
                 # Save to root path
+                print("Path was empty, saving to root folder")
             else:
                 # Parse Path
                 # Save to Path
+                print("Saving to Path: ")
                                
     else:
          print("Session Ended.")
          sys.exit()
 
-print(Back.GREEN + Bar('=', 100) + Back.BLACK)
-print("Emails Found:")
-print(emails)
-
+end_scene()
 
 
 
