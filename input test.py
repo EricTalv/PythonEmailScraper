@@ -1,8 +1,8 @@
-s = input("Enter Y or N")
+s = input("Enter Y or N").upper()
 
-if s is 'Y':
+if s == 'Y':
     print('you pressd Y')
-elif s is 'N':
+elif s == 'N':
     print('you pressd N')
 else:
     print('you pressed nothing')
