@@ -34,7 +34,7 @@ def Bar(string_to_expand, length):
 
 # Create End_Scene
 def end_scene():
-    print(Back.GREEN + Bar('=', 100) + Back.BLACK)
+    print(Back.GREEN + Bar('=', 50) + Back.BLACK)
     print("[[Session Stopped]]")
     print("Emails Found:")
     print(Fore.CYAN)
@@ -95,7 +95,7 @@ while len(unprocessed_urls):
         print(Fore.GREEN) 
         print(new_emails)
         print("Email Count: ", len(emails))
-        print(Fore.BLACK)
+        print(Fore.WHITE)
     
     # create a beutiful soup for the html document
     soup = BeautifulSoup(response.text, 'lxml')
