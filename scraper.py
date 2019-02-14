@@ -105,7 +105,7 @@ def end_scene():
     session_choice = input("Save emails as .CSV?").upper()
     if session_choice == 'Y':
             # Ask For path
-            email_path = input("Enter Path or Leave Empty |Will save to root folder: "
+            email_path = input("Enter Path or Leave Empty |Will save to root folder: ")
             if len(email_path) is 0:
                 # Save to root path
                 print("Path was empty, saving to root folder")
