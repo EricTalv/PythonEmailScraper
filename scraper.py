@@ -81,7 +81,7 @@ def end_scene():
         if len(csv_name) is 0:
             gen_name = starting_url.split("//")[-1].split("/")[0]
             # Ask For File Path           
-            path(file_path, gen_name, emails)
+           path(file_path, gen_name, emails)
         else:
             # Ask For File Path
             path(file_path, csv_name, emails)            
@@ -143,24 +143,6 @@ while len(unprocessed_urls):
         # add the new url to the queue if it was not in unprocessed list nor in processed list yet
         if not link in unprocessed_urls and not link in processed_urls:
             unprocessed_urls.append(link)
-
-# This is for writing a csv file
-'''
-with open('_EMAILS.csv', 'w') as emails_file:
-    writer = csv.writer(emails_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-
-    writer.writerow(emails)
-'''
-
-# CSV Writer function
-def write_csv(file_name, )
-    with open(file_name, 'w') as email_file:
-        writer = csv.writer(email_file)
-
-        for row in range(1, len(theset))
-            writer.writerow(row)
-
-
 
 end_scene()
 
