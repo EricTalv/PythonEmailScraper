@@ -5,6 +5,9 @@ import requests.exceptions
 import csv
 import signal
 import sys
+import itertools
+import threading
+import time
 from urllib.parse import urlsplit
 from collections import deque
 from bs4 import BeautifulSoup
@@ -86,8 +89,30 @@ def end_scene():
     else:
          print("Not Saved | Session Ended.")
          sys.exit()
+
+# Loading Animation
+done = False
+
+def animate():
+    # Cycle through list
+    
+    for c in itertools.cycle(['|', '/', '-', '\\']):
+        # if done = true break
+        if done:
+            break 
+        # write out        
+        sys.stdout.write('\rLoading ' + c)
+        # force write all to terminal
+        sys.stdout.flush()
+        # sleep
+        time.sleep(0.1)
+    
+         
 # process urls one by one from unprocessed_url queue until queue is empty
 while len(unprocessed_urls):
+    # Thread
+    t = threading.Thread(target=animate)
+    
 
     # move next url from the queue to the set of processed urls
     url = unprocessed_urls.popleft()
@@ -99,21 +124,36 @@ while len(unprocessed_urls):
     path = url[:url.rfind('/')+1] if '/' in parts.path else url
 
     # get url's content
-    print(Fore.CYAN + "Crawling URL %s" % url + Fore.WHITE)
-    
+    print(Fore.CYAN + "Crawling URL %s" % url + Fore.WHITE) 
     try:
-        response = requests.get(url)
-    except (requests.exceptions.MissingSchema, requests.exceptions.ConnectionError):
-        print(Back.RED + '[ERROR]Connection Error' + Back.BLACK)
-        # ignore pages with errors and continue with next url
+        t.start()
+        response = requests.get(url, timeout=3)
+        done = True
+    except requests.exceptions.ConnectionError as e:
+        print("\n[ERROR]Connection Error:")
+        print(e)
         continue
-
+    except requests.Timeout as e:   
+        print("\n[ERROR]Connection Timeout:")
+        print(e)
+        continue
+    except requests.HTTPError as e:   
+        print("\n[ERROR]HTTP Error:")
+        print(e)
+        continue
+    except requests.RequestException as e:   
+        print("\n[ERROR]General Error:")
+        print(e)
+        continue    
         # Check for CTRL+C interruption
     except KeyboardInterrupt:
         if len(emails) is 0:
             print("No emails have been collected |Crawling Ended")
         else:
             end_scene()
+    finally:
+        done = True
+    
 
     # extract all email addresses and add them into the resulting set
     # You may edit the regular expression as per your requirement
