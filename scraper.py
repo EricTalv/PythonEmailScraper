@@ -90,26 +90,6 @@ def end_scene():
          print("Not Saved | Session Ended.")
          sys.exit()
 
-# Loading Animation
-done = False
-
-def animate():
-    # Cycle through list
-    
-    for c in itertools.cycle(['|', '/', '-', '\\']):
-        # if done = true break
-        if done:
-            break 
-        # write out        
-        sys.stdout.write('\rLoading ' + c)
-        # force write all to terminal
-        sys.stdout.flush()
-        # sleep
-        time.sleep(0.1)
-# Thread
-    t = threading.Thread(target=animate)
-    t.start()
-         
 # process urls one by one from unprocessed_url queue until queue is empty
 while len(unprocessed_urls):
 
@@ -149,18 +129,16 @@ while len(unprocessed_urls):
             print("No emails have been collected |Crawling Ended")
         else:
             end_scene()
-    finally:
-        done = True
-    
 
     # extract all email addresses and add them into the resulting set
-    # You may edit the regular expression as per your requirement
     new_emails = set(re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", response.text, re.I))
     emails.update(new_emails)
     
     if len(new_emails) is 0:
         print(Back.RED)        
         print("No emails found")
+        print("URLS: {processed}/{unprocessed}".format(processed=str(len(processed_urls)),
+                                                       unprocessed=str(len(unprocessed_urls))))
         print(Back.BLACK)
     else:
         print(Fore.GREEN) 
@@ -182,9 +160,12 @@ while len(unprocessed_urls):
             link = base_url + link
         elif not link.startswith('http'):
             link = path + link
-        # add the new url to the queue if it was not in unprocessed list nor in processed list yet
-        if not link in unprocessed_urls and not link in processed_urls:
-            unprocessed_urls.append(link)
+        try:     
+            # add the new url to the queue if it was not in unprocessed list nor in processed list yet
+            if not link in unprocessed_urls and not link in processed_urls:
+                unprocessed_urls.append(link)
+        except KeyboardInterrupt:
+            end_scene()
 
 if len(emails) is 0:
     print("No emails have been collected |Crawling Ended")
