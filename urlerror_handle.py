@@ -30,12 +30,13 @@ def animate():
     sys.stdout.write('\rDone!     ')
     
     
-# Thread
-t = threading.Thread(target=animate)
-t.start()
 
 # Run Request
 try:
+    # Thread
+    t = threading.Thread(target=animate)
+    t.start()
+
     res = requests.get(timeout_url, timeout=3)
     print(res)
 except requests.exceptions.ConnectionError as e:
