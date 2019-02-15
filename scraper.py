@@ -12,12 +12,12 @@ from colorama import *
 init()
 
 # starting url. replace google with your own url.
-starting_url = 'https://erictalv.github.io./' #'https://www.neti.ee/cgi-bin/teema/ARI/Byrooteenused/'
+# starting_url = 'https://erictalv.github.io./' #'https://www.neti.ee/cgi-bin/teema/ARI/Byrooteenused/'
 
 # UNCOMMENT THIS ON PRODUCTION
-# print(Fore.YELLOW + "~~~~Email Scraper v1~~~~" 
-# starting_url = input("Enter Website Link to Scrape: ")
-# print("Starting scraper.." + Fore.WHITE)
+print(Back.BLUE + "|~~~~Email Scraper v2~~~~|" )
+starting_url = input("Enter Website Link to Scrape: ")
+print("Starting scraper.." + Back.BLACK)
 
 # a queue of urls to be crawled
 unprocessed_urls = deque([starting_url])
@@ -38,7 +38,7 @@ def write_csv(dirpath, file_name, collection):
     print("[WRTIER]Loading..")
     # Open writer, set file_name and path
     def writer():
-        print("Pass Writer")
+        print("[WRITER]Pass Writer")
         # Pass email_file to writer
         writer = csv.writer(email_file,
                             delimiter=' ',
@@ -66,7 +66,7 @@ def end_scene():
     print("[[Session Stopped]]")
     print("Emails Found:")
     print(Fore.CYAN)
-    print(emails)
+    print("\n".join(emails))
     print(Fore.WHITE)
     print(Back.GREEN + Bar('=', 50) + Back.BLACK)
     
