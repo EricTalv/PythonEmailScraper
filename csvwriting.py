@@ -2,7 +2,7 @@ import csv
 
 emails = {"very@cool.net", "not@cool.eu", "email@cool.com"}
 
-directory = C:\Users\Eric\Desktop\emailcsvs\\
+directory = 'C:\Users\Eric\Desktop\emailcsvs\\'
 
 print("Starting")
 # CSV Writer function
