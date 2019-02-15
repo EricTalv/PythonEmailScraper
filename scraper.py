@@ -5,13 +5,11 @@ import requests.exceptions
 import csv
 import signal
 import sys
-import eventlet
 from urllib.parse import urlsplit
 from collections import deque
 from bs4 import BeautifulSoup
 from colorama import *
 init()
-eventlet.monkey_patch()
 
 # starting url. replace google with your own url.
 # starting_url = 'https://erictalv.github.io./' #'https://www.neti.ee/cgi-bin/teema/ARI/Byrooteenused/'
@@ -102,7 +100,8 @@ while len(unprocessed_urls):
 
     # get url's content
     print(Fore.CYAN + "Crawling URL %s" % url + Fore.WHITE)
-    try:        
+    
+    try:
         response = requests.get(url)
     except (requests.exceptions.MissingSchema, requests.exceptions.ConnectionError):
         print(Back.RED + '[ERROR]Connection Error' + Back.BLACK)
