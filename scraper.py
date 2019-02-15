@@ -106,13 +106,12 @@ def animate():
         sys.stdout.flush()
         # sleep
         time.sleep(0.1)
-    
+# Thread
+    t = threading.Thread(target=animate)
+    t.start()
          
 # process urls one by one from unprocessed_url queue until queue is empty
 while len(unprocessed_urls):
-    # Thread
-    t = threading.Thread(target=animate)
-    
 
     # move next url from the queue to the set of processed urls
     url = unprocessed_urls.popleft()
@@ -125,8 +124,7 @@ while len(unprocessed_urls):
 
     # get url's content
     print(Fore.CYAN + "Crawling URL %s" % url + Fore.WHITE) 
-    try:
-        t.start()
+    try:       
         response = requests.get(url, timeout=3)
         done = True
     except requests.exceptions.ConnectionError as e:
@@ -168,6 +166,8 @@ while len(unprocessed_urls):
         print(Fore.GREEN) 
         print(new_emails)
         print("Email Count: ", len(emails))
+        print("URLS: {processed}/{unprocessed}".format(processed=str(len(processed_urls)),
+                                                       unprocessed=str(len(unprocessed_urls))))
         print(Fore.WHITE)
     
     # create a beutiful soup for the html document
