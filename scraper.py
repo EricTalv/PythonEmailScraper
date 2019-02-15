@@ -33,10 +33,11 @@ def Bar(string_to_expand, length):
     return (string_to_expand * (int(length/len(string_to_expand))+1))[:length]
 
 # CSV Writer function
-def write_csv(file_name, collection):
-    print("Open writer")
-    # Open writer, set file_name
-    with open(file_name + '.csv', 'w') as email_file:
+# CSV Writer function
+def write_csv(dirpath, file_name, collection):
+    print("[WRTIER]Loading..")
+    # Open writer, set file_name and path
+    def writer():
         print("Pass Writer")
         # Pass email_file to writer
         writer = csv.writer(email_file,
@@ -44,11 +45,20 @@ def write_csv(file_name, collection):
                             quotechar='|',
                             quoting=csv.QUOTE_MINIMAL)
 
-        print("Writing throught collections:")
+        print("[WRITER]Writing through collections:")
         # For every item inside the collection write a row
         for row in collection:
             print(row)
             writer.writerow([row])
+        print("[WRITER]Done")    
+
+    # check Dir Path
+    if len(dirpath) is 0:
+         with open(file_name + '.csv', 'w') as email_file:
+            writer()         
+    else:
+        with open(dirpath + '\\' + file_name + '.csv', 'w') as email_file:
+            writer()
 
 # Create End_Scene
 def end_scene():
@@ -62,16 +72,26 @@ def end_scene():
     
     session_choice = input("Save emails as .CSV?[Y/]").upper()
     if session_choice == 'Y':
-            # Ask For path
+        def path():
+            # Ask For Path
             email_path = input("Enter Path or Leave Empty |Will save to root folder: ")
             if len(email_path) is 0:
                 # Save to root path
                 print("Path was empty, saving to root folder")
+                write_csv(email_path, csv_nam)
+                            
             else:
                 # Parse Path
                 # Save to Path
-                print("Saving to Path: ")
-                               
+                print("Saving to Path: ")                  
+
+            # Ask for Name
+            csv_name = input("Insert Name or Leave Empty: ")
+            if len(csv_name) is 0:
+                gen_name = starting_url.split("//")[-1].split("/")[0]
+                path()
+            else:
+                path()
     else:
          print("Session Ended.")
          sys.exit()

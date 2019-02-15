@@ -33,5 +33,5 @@ def write_csv(dirpath, file_name, collection):
         with open(dirpath + '\\' + file_name + '.csv', 'w') as email_file:
             writer()
             
-write_csv(dir1,'cool23', emails)
+write_csv(dir1,'', emails)
 print("End.")
