@@ -104,6 +104,7 @@ while len(unprocessed_urls):
     try:
         response = requests.get(url)
     except (requests.exceptions.MissingSchema, requests.exceptions.ConnectionError):
+        print(Back.RED + '[ERROR]Connection Error' + Back.BLACK)
         # ignore pages with errors and continue with next url
         continue
 
