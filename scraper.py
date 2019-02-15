@@ -14,8 +14,65 @@ from bs4 import BeautifulSoup
 from colorama import *
 init()
 
-# starting url. replace google with your own url.
-# starting_url = 'https://erictalv.github.io./' #'https://www.neti.ee/cgi-bin/teema/ARI/Byrooteenused/'
+# A fancy bar
+def Bar(string_to_expand, length):
+    return (string_to_expand * (int(length/len(string_to_expand))+1))[:length]
+
+# CSV Writer function
+# CSV Writer function
+def write_csv(dirpath, file_name, collection):
+    print("[WRTIER]Loading..")
+    # Open writer, set file_name and path
+    def writer():
+        print("[WRITER]Pass Writer")
+        # Pass email_file to writer
+        writer = csv.writer(email_file,
+                            delimiter=' ',
+                            quotechar='|',
+                            quoting=csv.QUOTE_MINIMAL)
+
+        print("[WRITER]Writing through collections:")
+        # For every item inside the collection write a row
+        for row in collection:
+            print(row)
+            writer.writerow([row])
+        print("[WRITER]Done")    
+
+    # check Dir Path
+    if len(dirpath) is 0:
+         with open(file_name + '.csv', 'w') as email_file:
+            writer()         
+    else:
+        with open(dirpath + '\\' + file_name + '.csv', 'w') as email_file:
+            writer()
+
+# Create End_Scene
+def end_scene():
+    print(Back.GREEN + Bar('=', 50) + Back.BLACK)
+    print("[[Session Stopped]]")
+    print("Emails Found:")
+    print(Fore.CYAN)
+    print("\n".join(emails))
+    print(Fore.WHITE)
+    print(Back.GREEN + Bar('=', 50) + Back.BLACK)
+    
+    session_choice = input("Save emails as .CSV?[Y/]").upper()
+    if session_choice == 'Y':
+        file_path = input("Insert Path Or Leave Empty |Saves to root folder: ")
+            
+        # Ask For Name
+        csv_name = input("Insert Name or Leave Empty |Generates name from URL: ")
+        if len(csv_name) is 0:
+            gen_name = starting_url.split("//")[-1].split("/")[0]
+            # Ask For File Path           
+            write_csv(file_path, gen_name, emails)
+        else:
+            # Ask For File Path
+            write_csv(file_path, csv_name, emails)            
+    else:
+         print("Not Saved | Session Ended.")
+         sys.exit()
+         
 try:
     # UNCOMMENT THIS ON PRODUCTION
     print(Back.BLUE + "|~~~~Email Scraper v2~~~~|" )
@@ -30,66 +87,7 @@ try:
 
     # a set of fetched emails
     emails = set()
-
-    # A fancy bar
-    def Bar(string_to_expand, length):
-        return (string_to_expand * (int(length/len(string_to_expand))+1))[:length]
-
-    # CSV Writer function
-    # CSV Writer function
-    def write_csv(dirpath, file_name, collection):
-        print("[WRTIER]Loading..")
-        # Open writer, set file_name and path
-        def writer():
-            print("[WRITER]Pass Writer")
-            # Pass email_file to writer
-            writer = csv.writer(email_file,
-                                delimiter=' ',
-                                quotechar='|',
-                                quoting=csv.QUOTE_MINIMAL)
-
-            print("[WRITER]Writing through collections:")
-            # For every item inside the collection write a row
-            for row in collection:
-                print(row)
-                writer.writerow([row])
-            print("[WRITER]Done")    
-
-        # check Dir Path
-        if len(dirpath) is 0:
-             with open(file_name + '.csv', 'w') as email_file:
-                writer()         
-        else:
-            with open(dirpath + '\\' + file_name + '.csv', 'w') as email_file:
-                writer()
-
-    # Create End_Scene
-    def end_scene():
-        print(Back.GREEN + Bar('=', 50) + Back.BLACK)
-        print("[[Session Stopped]]")
-        print("Emails Found:")
-        print(Fore.CYAN)
-        print("\n".join(emails))
-        print(Fore.WHITE)
-        print(Back.GREEN + Bar('=', 50) + Back.BLACK)
-        
-        session_choice = input("Save emails as .CSV?[Y/]").upper()
-        if session_choice == 'Y':
-            file_path = input("Insert Path Or Leave Empty |Saves to root folder: ")
-                
-            # Ask For Name
-            csv_name = input("Insert Name or Leave Empty |Generates name from URL: ")
-            if len(csv_name) is 0:
-                gen_name = starting_url.split("//")[-1].split("/")[0]
-                # Ask For File Path           
-                write_csv(file_path, gen_name, emails)
-            else:
-                # Ask For File Path
-                write_csv(file_path, csv_name, emails)            
-        else:
-             print("Not Saved | Session Ended.")
-             sys.exit()
-
+   
     # process urls one by one from unprocessed_url queue until queue is empty
     while len(unprocessed_urls):
 
@@ -159,16 +157,14 @@ try:
             if link.startswith('/'):
                 link = base_url + link
             elif not link.startswith('http'):
-                link = path + link
-            try:     
+                link = path + link    
                 # add the new url to the queue if it was not in unprocessed list nor in processed list yet
                 if not link in unprocessed_urls and not link in processed_urls:
                     unprocessed_urls.append(link)
-
-    if len(emails) is 0:
-        print("No emails have been collected |Crawling Ended")
-    else:
-        end_scene()
+        if len(emails) is 0:
+            print("No emails have been collected |Crawling Ended")
+        else:
+            end_scene()
 except KeyboardInterrupt:
  end_scene()
 
