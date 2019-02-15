@@ -7,7 +7,7 @@ import sys
 # Define URLS
 bad_url = 'https://erictalv.git'
 good_url = 'https://erictalv.github.io./'
-timeout_url = 'ferdida.com'
+timeout_url = 'https://ferdida.com/'
 
 # Loading Animation
 done = False
@@ -36,23 +36,20 @@ t.start()
 
 # Run Request
 try:
-    res = requests.get(bad_url, timeout=0.001)
+    res = requests.get(timeout_url, timeout=3)
     print(res)
 except requests.exceptions.ConnectionError as e:
     print("\n[ERROR]Connection Error:")
-    print(e)
-except requests.TooManyRedirects as e:   
-    print("\n[ERROR]Too many Redirects:")
     print(e)
 except requests.Timeout as e:   
     print("\n[ERROR]Connection Timeout:")
     print(e)
 except requests.HTTPError as e:   
-    print("\n[ERROR]")
+    print("\n[ERROR]HTTP Error:")
     print(e)
     sys.exit(1)
 except requests.RequestException as e:   
-    print("\n[ERROR]")
+    print("\n[ERROR]General Error:")
     print(e)
     sys.exit(1)    
 finally:
