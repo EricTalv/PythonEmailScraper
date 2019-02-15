@@ -72,21 +72,19 @@ def end_scene():
     
     session_choice = input("Save emails as .CSV?[Y/]").upper()
     if session_choice == 'Y':
-        def path(path, name, collection):
-            file_path = input("Insert Path Or Leave Empty |Saves to root folder")
-            write_csv(path, name, collection)
+        file_path = input("Insert Path Or Leave Empty |Saves to root folder: ")
             
         # Ask For Name
         csv_name = input("Insert Name or Leave Empty: ")
         if len(csv_name) is 0:
             gen_name = starting_url.split("//")[-1].split("/")[0]
             # Ask For File Path           
-           path(file_path, gen_name, emails)
+            write_csv(file_path, gen_name, emails)
         else:
             # Ask For File Path
-            path(file_path, csv_name, emails)            
+            write_csv(file_path, csv_name, emails)            
     else:
-         print("Session Ended.")
+         print("Not Saved | Session Ended.")
          sys.exit()
 
 # process urls one by one from unprocessed_url queue until queue is empty
