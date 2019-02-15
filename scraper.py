@@ -75,7 +75,7 @@ def end_scene():
         file_path = input("Insert Path Or Leave Empty |Saves to root folder: ")
             
         # Ask For Name
-        csv_name = input("Insert Name or Leave Empty: ")
+        csv_name = input("Insert Name or Leave Empty |Generates name from URL: ")
         if len(csv_name) is 0:
             gen_name = starting_url.split("//")[-1].split("/")[0]
             # Ask For File Path           
