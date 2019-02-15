@@ -32,6 +32,24 @@ emails = set()
 def Bar(string_to_expand, length):
     return (string_to_expand * (int(length/len(string_to_expand))+1))[:length]
 
+# CSV Writer function
+def write_csv(file_name, collection):
+    print("Open writer")
+    # Open writer, set file_name
+    with open(file_name + '.csv', 'w') as email_file:
+        print("Pass Writer")
+        # Pass email_file to writer
+        writer = csv.writer(email_file,
+                            delimiter=' ',
+                            quotechar='|',
+                            quoting=csv.QUOTE_MINIMAL)
+
+        print("Writing throught collections:")
+        # For every item inside the collection write a row
+        for row in collection:
+            print(row)
+            writer.writerow([row])
+
 # Create End_Scene
 def end_scene():
     print(Back.GREEN + Bar('=', 50) + Back.BLACK)
