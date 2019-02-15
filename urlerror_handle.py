@@ -41,7 +41,8 @@ except requests.exceptions.HTTPError:
     print("[ERROR]")
     print(done)
     sys.exit(0)
-
+finally:
+    done = True
 print(done)    
 
 
