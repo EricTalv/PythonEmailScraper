@@ -109,8 +109,11 @@ while len(unprocessed_urls):
 
         # Check for CTRL+C interruption
     except KeyboardInterrupt:
-        end_scene()
-        
+        if len(emails) is 0:
+            print("No emails have been collected |Crawling Ended")
+        else:
+            end_scene()
+
     # extract all email addresses and add them into the resulting set
     # You may edit the regular expression as per your requirement
     new_emails = set(re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", response.text, re.I))
@@ -142,7 +145,10 @@ while len(unprocessed_urls):
         if not link in unprocessed_urls and not link in processed_urls:
             unprocessed_urls.append(link)
 
-end_scene()
+if len(emails) is 0:
+    print("No emails have been collected |Crawling Ended")
+else:
+    end_scene()
 
 
 
