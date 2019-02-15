@@ -31,6 +31,11 @@ processed_urls = set()
 # a set of fetched emails
 emails = set()
 
+# KeyboardInterrupt Handler
+def signal_handler(sig, frame):
+    end_scene()
+signal.signal(signal.SIGINT, signal_handler)
+
 # A fancy bar
 def Bar(string_to_expand, length):
     return (string_to_expand * (int(length/len(string_to_expand))+1))[:length]
