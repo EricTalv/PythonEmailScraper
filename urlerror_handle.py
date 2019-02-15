@@ -21,8 +21,10 @@ def animate():
             break 
         # write out        
         sys.stdout.write('\rLoading ' + c)
-        for s in range(time.time()):
-            sys.stdout.write(str(s))
+
+        start = time.time()
+        for s in int(start):
+            sys.stdout.write([str(s)])
         # force write all to terminal
         sys.stdout.flush()
         # sleep
