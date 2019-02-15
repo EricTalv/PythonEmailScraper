@@ -72,26 +72,19 @@ def end_scene():
     
     session_choice = input("Save emails as .CSV?[Y/]").upper()
     if session_choice == 'Y':
-        def path():
-            # Ask For Path
-            email_path = input("Enter Path or Leave Empty |Will save to root folder: ")
-            if len(email_path) is 0:
-                # Save to root path
-                print("Path was empty, saving to root folder")
-                write_csv(email_path, csv_nam)
-                            
-            else:
-                # Parse Path
-                # Save to Path
-                print("Saving to Path: ")                  
-
-            # Ask for Name
-            csv_name = input("Insert Name or Leave Empty: ")
-            if len(csv_name) is 0:
-                gen_name = starting_url.split("//")[-1].split("/")[0]
-                path()
-            else:
-                path()
+        def path(path, name, collection):
+            file_path = input("Insert Path Or Leave Empty |Saves to root folder")
+            write_csv(path, name, collection)
+            
+        # Ask For Name
+        csv_name = input("Insert Name or Leave Empty: ")
+        if len(csv_name) is 0:
+            gen_name = starting_url.split("//")[-1].split("/")[0]
+            # Ask For File Path           
+            path(file_path, gen_name, emails)
+        else:
+            # Ask For File Path
+            path(file_path, csv_name, emails)            
     else:
          print("Session Ended.")
          sys.exit()
