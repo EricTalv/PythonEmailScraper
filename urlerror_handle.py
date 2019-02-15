@@ -11,39 +11,43 @@ timeout_url = 'ferdida.com'
 
 # Loading Animation
 done = False
+
 def animate():
     # Cycle through list
+    
     for c in itertools.cycle(['|', '/', '-', '\\']):
         # if done = true break
         if done:
-            break
-        # write out 
+            break 
+        # write out        
         sys.stdout.write('\rLoading ' + c)
+        for s in range(time.time()):
+            sys.stdout.write(str(s))
         # force write all to terminal
         sys.stdout.flush()
         # sleep
         time.sleep(0.1)
+      
     # write out   
     sys.stdout.write('\rDone!     ')
-
+    
+    
 # Thread
 t = threading.Thread(target=animate)
 t.start()
 
 # Run Request
 try:
-    res = requests.get(bad_url)
+    res = requests.get(bad_url, timeout=0.001)
     done = True
     print(res)
-    print(done)
-except requests.exceptions.HTTPError:
+except requests.exceptions.ConnectionError as err:
     done = True
-    print("[ERROR]")
-    print(done)
-    sys.exit(0)
+    print("\n[ERROR]")
+    print(err)
+
 finally:
     done = True
-print(done)    
-
+    
 
 
