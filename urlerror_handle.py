@@ -10,14 +10,20 @@ good_url = 'https://erictalv.github.io./'
 timeout_url = 'ferdida.com'
 
 # Loading Animation
-finished = False
+done = False
 def animate():
+    # Cycle through list
     for c in itertools.cycle(['|', '/', '-', '\\']):
+        # if done = true break
         if done:
             break
-        sys.stdout.write('\rloading ' + c)
+        # write out 
+        sys.stdout.write('\rLoading ' + c)
+        # force write all to terminal
         sys.stdout.flush()
+        # sleep
         time.sleep(0.1)
+    # write out   
     sys.stdout.write('\rDone!     ')
 
 # Thread
@@ -26,12 +32,17 @@ t.start()
 
 # Run Request
 try:
-    while finished is False:
-        res = requests.get(bad_url)
-    finished = True
+    res = requests.get(bad_url)
+    done = True
     print(res)
-except requests.exceptions.HTTPError as err:
-    finished = True
-    print("[ERROR]" + err)
+    print(done)
+except requests.exceptions.HTTPError:
+    done = True
+    print("[ERROR]")
+    print(done)
+    sys.exit(0)
+
+print(done)    
+
 
 
