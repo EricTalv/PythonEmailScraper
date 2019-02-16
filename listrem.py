@@ -1,4 +1,16 @@
-l1 = [1,2,6,8]
-l2 = [2,3,5,8]
+#l1 = [1,2,6,8]
+#l2 = [2,3,5,8]
 
-list(filter(lambda x: x not in l2,l1))
+urls = set(['facebook',
+            'youtube',
+            'ikipedia',
+            'things i want',
+            'ineed',
+            'website@com',
+            'netflix',
+            'wikipedia'])
+blocked  = set(['netflix', 'facebook', 'youtube', 'ikipedia'])
+
+
+if blocked in urls:
+   print("found")
