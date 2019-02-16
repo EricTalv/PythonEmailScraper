@@ -9,8 +9,13 @@ urls = set(['facebook',
             'website@com',
             'netflix',
             'wikipedia'])
-blocked  = set(['netflix', 'facebook', 'youtube', 'ikipedia'])
+blockers  = set(['netflix', 'facebook', 'youtube', 'ikipedia'])
+ 
+
+url1 = 'facebook.com'
 
 
-if blocked in urls:
-   print("found")
+if 'facebook' in url:
+      print("itsthere")
+else:
+      print("its not")

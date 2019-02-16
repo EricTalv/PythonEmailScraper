@@ -5,9 +5,9 @@ urls = {"facebook.com", "vikipedia", "wikipedia"}
 # Open blocked sites list
 with open('blocked_sites.txt','r') as blocked_sites:
    # Read all line from file
-   lines = blocked_sites.readlines()
+   blocked = blocked_sites.readlines()
    # Compare checks
-   for row in lines:
+   for row in blocked:
       # Compare lines List to Urls
          # If URLS Contains ITEM in BLOCKED
            # Remove ITEM
