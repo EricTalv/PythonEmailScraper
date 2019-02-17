@@ -12,11 +12,12 @@ with open('blocked_sites.txt','r') as blocked_sites:
       ## and For each BLOCKER in BLOCKED
       for blocker in blocked:
          ## IF URL is in BLOCKER
-         if url in blocker:
-            print("URL:{url} | BLOCKER:{blocker}".format(url=url,
-                                                         blocker=blocker))
-         else:
-            print("no match")
+          if blocker in url:
+               print("[M]URL:{url} = BLOCKER:{blocker}".format(url=url,
+                                                               blocker=blocker))
+          else:
+               print("[N]URL:{url} | BLOCKER:{blocker}".format(url=url,
+                                                               blocker=blocker))
      
          # If URLS Contains ITEM in BLOCKED
            # Remove ITEM

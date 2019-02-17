@@ -1,6 +1,2 @@
-facebook.com
- ikipedia.com
-youtube.com 
-linkedin.com
-netflix.com
-google.com
+facebook
+youtube
