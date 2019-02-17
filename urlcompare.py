@@ -1,6 +1,6 @@
 
 
-urls = {"facebook.com", "vikipedia", "wikipedia", "gold"}
+urls = {'facebook.com', 'youtube.com', 'gold'}
 
 # Open blocked sites list
 with open('blocked_sites.txt','r') as blocked_sites:
