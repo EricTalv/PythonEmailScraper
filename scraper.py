@@ -107,7 +107,10 @@ while len(unprocessed_urls):
         done = True
     except requests.exceptions.ConnectionError as e:
         print(Back.RED + "\n[ERROR]Connection Error:" + Back.BLACK)
-        print(Fore.RED + e + Fore.WHITE)  
+        print(Fore.RED)
+        print(e)
+        print(type(e))
+        print(Fore.WHITE)  
         continue
     except requests.Timeout as e:   
         print(Back.RED + "\n[ERROR]Connection Error:" + Back.BLACK)
