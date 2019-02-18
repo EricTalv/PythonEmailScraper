@@ -13,6 +13,7 @@ for url in urls:
       # If url CONTAINS Blocker
       if blocker in url:
          # Remove that url
+           urls.remove(blocker)
            print("[M]URL:{url} == BLOCKER:{blocker}".format(url=url,
                                                            blocker=blocker))
       else:
