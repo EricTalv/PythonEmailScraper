@@ -41,22 +41,17 @@ def Bar(string_to_expand, length):
 # CSV Writer function
 # CSV Writer function
 def write_csv(dirpath, file_name, collection):
-    print("[WRTIER]Loading..")
     # Open writer, set file_name and path
     def writer():
-        print("[WRITER]Pass Writer")
         # Pass email_file to writer
         writer = csv.writer(email_file,
                             delimiter=' ',
                             quotechar='|',
                             quoting=csv.QUOTE_MINIMAL)
-
-        print("[WRITER]Writing through collections:")
         # For every item inside the collection write a row
         for row in collection:
             print(row)
             writer.writerow([row])
-        print("[WRITER]Done")    
 
     # check Dir Path
     if len(dirpath) is 0:
@@ -140,11 +135,11 @@ while len(unprocessed_urls):
     emails.update(new_emails)
     
     if len(new_emails) is 0:
-        print(Back.RED)        
+        print(Fore.RED)        
         print("No emails found")
         print("URLS: {processed}/{unprocessed}".format(processed=str(len(processed_urls)),
                                                        unprocessed=str(len(unprocessed_urls))))
-        print(Back.BLACK)
+        print(Fore.WHITE)
     else:
         print(Fore.GREEN) 
         print(new_emails)
