@@ -5,8 +5,6 @@ import requests.exceptions
 import csv
 import signal
 import sys
-import itertools
-import threading
 import time
 from urllib.parse import urlsplit
 from collections import deque
