@@ -1,6 +1,6 @@
 
 urls = ['facebook.com', 'youtube.com', 'gold']
-blocked = ['facebook', 'youtube']
+blocked = ['facebook', 'netflix','youtube']
 
 for url in urls:
    for blocker in blocked:      
