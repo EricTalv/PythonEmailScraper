@@ -1,13 +1,13 @@
 
 urls = {'facebook.com', 'youtube.com', 'gold'}
-blocker = {'facebook'}
+blocked = {'facebook'}
 
 for url in urls:
-   if blocker in url:
-      urls.remove(url)
-
-
-
-print(urls)
+   for blocker in blocked:      
+      if blocker in url:
+         urls.remove(url)
+         print('removed: ' + url)
+      else:
+         print('no item')
 
 
