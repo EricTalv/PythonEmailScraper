@@ -106,23 +106,28 @@ while len(unprocessed_urls):
         response = requests.get(url, timeout=3)
         done = True
     except requests.exceptions.ConnectionError as e:
-        print(Back.RED + "\n[ERROR]Connection Error:" + Back.BLACK)
+        print(Back.RED + "[ERROR]Connection Error:" + Back.BLACK)
         print(Fore.RED)
         print(e)
-        print(type(e))
         print(Fore.WHITE)  
         continue
     except requests.Timeout as e:   
-        print(Back.RED + "\n[ERROR]Connection Error:" + Back.BLACK)
-        print(Fore.RED + e + Fore.WHITE)  
+        print(Back.RED + "[ERROR]Connection Error:" + Back.BLACK)
+        print(Fore.RED)
+        print(e)
+        print(Fore.WHITE)   
         continue
     except requests.HTTPError as e:   
-        print(Back.RED + "\n[ERROR]Connection Error:" + Back.BLACK)
-        print(Fore.RED + e + Fore.WHITE)  
+        print(Back.RED + "[ERROR]Connection Error:" + Back.BLACK)
+        print(Fore.RED)
+        print(e)
+        print(Fore.WHITE)  
         continue
     except requests.RequestException as e:   
-        print(Back.RED + "\n[ERROR]Connection Error:" + Back.BLACK)
-        print(Fore.RED + e + Fore.WHITE)  
+        print(Back.RED + "[ERROR]Connection Error:" + Back.BLACK)
+        print(Fore.RED)
+        print(e)
+        print(Fore.WHITE)    
         continue    
         # Check for CTRL+C interruption
     except KeyboardInterrupt:

@@ -12,9 +12,11 @@ for url in urls:
    for blocker in blocked:
       # If url CONTAINS Blocker
       if blocker in url:
+         # Remove that url
            print("[M]URL:{url} == BLOCKER:{blocker}".format(url=url,
                                                            blocker=blocker))
       else:
+         # Do nothing, keep it
            print("[N]URL:{url} || BLOCKER:{blocker}".format(url=url,
                                                            blocker=blocker))
  
