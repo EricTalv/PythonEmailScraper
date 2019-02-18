@@ -1,6 +1,6 @@
 # PythonWebScraper
 
-Another web-scraper to get some tasty emails 
+An email webscraper to scrape multiple links for a huge array of emails.
 
 # How to use 
 
