@@ -94,12 +94,18 @@ while len(unprocessed_urls):
     # move next url from the queue to the set of processed urls
     url = unprocessed_urls.popleft()
     processed_urls.add(url)
+    
+    
 
+    
     # extract base url to resolve relative links
     parts = urlsplit(url)
     base_url = "{0.scheme}://{0.netloc}".format(parts)
-    path = url[:url.rfind('/')+1] if '/' in parts.path else url
-
+    if parts.scheme !='mailto' and parts.scheme !='#':
+        path = url[:url.rfind('/')+1] if '/' in parts.path else url
+    else:
+        continue
+    
     # get url's content
     print(Fore.CYAN + "Crawling URL %s" % url + Fore.WHITE) 
     try:       
