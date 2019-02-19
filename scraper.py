@@ -109,10 +109,10 @@ while len(unprocessed_urls):
     # extract base url to resolve relative links
     parts = urlsplit(newurl)
     base_url = "{0.scheme}://{0.netloc}".format(parts)
-    #if parts.scheme !='mailto' and parts.scheme !='#':
-    path = newurl[:newurl.rfind('/')+1] if '/' in parts.path else newurl
-    #else:
-     #   continue
+    if parts.scheme !='mailto' and parts.scheme !='#':
+        path = newurl[:newurl.rfind('/')+1] if '/' in parts.path else newurl
+    else:
+        continue
     
     # get url's content
     print(Fore.CYAN + "Crawling URL %s" % newurl + Fore.WHITE) 
