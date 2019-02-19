@@ -20,6 +20,9 @@ print(Back.BLUE + "|~~~~Email Scraper v2~~~~|" )
 starting_url = input("Enter Website Link to Scrape: ")
 print("Starting scraper.." + Back.BLACK)
 
+# start timer
+start_time = time.time()
+
 # Blockers
 blockers = set(line.strip() for line in open('blocked_sites.txt'))
 
@@ -67,8 +70,9 @@ def write_csv(dirpath, file_name, collection):
 # Create End_Scene
 def end_scene():
     print(Back.GREEN + Bar('=', 50) + Back.BLACK)
-    print("[[Session Stopped]]")
-    print("Emails Found:")
+    elapsed_time = time.time() - start_time()
+    print("[[Session Stopped]] Time Elapsed: " + str(elapsed_time))
+    print("Emails Found:" + len(emails))
     print(Fore.CYAN)
     print("\n".join(emails))
     print(Fore.WHITE)
@@ -152,12 +156,16 @@ while len(unprocessed_urls):
     # You may edit the regular expression as per your requirement
     new_emails = set(re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", response.text, re.I))
     emails.update(new_emails)
+
+    elapsed_time = time.time() - start_time()
     
     if len(new_emails) is 0:
-        print(Fore.RED)        
+        print(Fore.RED)
         print("No emails found")
         print("URLS: {processed}/{unprocessed}".format(processed=str(len(processed_urls)),
                                                        unprocessed=str(len(unprocessed_urls))))
+        print("Elapsed Time: " + str(elapsed_time))
+        print("Email Count: ", len(emails))
         print(Fore.WHITE)
     else:
         print(Fore.GREEN) 
@@ -165,6 +173,7 @@ while len(unprocessed_urls):
         print("Email Count: ", len(emails))
         print("URLS: {processed}/{unprocessed}".format(processed=str(len(processed_urls)),
                                                        unprocessed=str(len(unprocessed_urls))))
+        print("Elapsed Time: " + str(elapsed_time))
         print(Fore.WHITE)
     
     # create a beutiful soup for the html document
