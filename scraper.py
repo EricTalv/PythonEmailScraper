@@ -110,7 +110,7 @@ while len(unprocessed_urls):
     parts = urlsplit(newurl)
     base_url = "{0.scheme}://{0.netloc}".format(parts)
     #if parts.scheme !='mailto' and parts.scheme !='#':
-        path = newurl[:newurl.rfind('/')+1] if '/' in parts.path else newurl
+    path = newurl[:newurl.rfind('/')+1] if '/' in parts.path else newurl
     #else:
      #   continue
     
