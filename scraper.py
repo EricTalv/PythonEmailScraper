@@ -95,25 +95,26 @@ def end_scene():
 while len(unprocessed_urls):
 
     # Remove unwanted items
-    urls = [url for url in urls if not any(blocker in url for blocker in blockers)]
+    unprocessed_urls = {url for url in unprocessed_urls if not any(blocker in url for blocker in blockers)}
+
 
     # move next url from the queue to the set of processed urls
-    url = unprocessed_urls.popleft()
-    processed_urls.add(url)
+    newurl = unprocessed_urls.popleft()
+    processed_urls.add(newurl)
 
    
     # extract base url to resolve relative links
-    parts = urlsplit(url)
+    parts = urlsplit(newurl)
     base_url = "{0.scheme}://{0.netloc}".format(parts)
     if parts.scheme !='mailto' and parts.scheme !='#':
-        path = url[:url.rfind('/')+1] if '/' in parts.path else url
+        path = newurl[:newurl.rfind('/')+1] if '/' in parts.path else newurl
     else:
         continue
     
     # get url's content
-    print(Fore.CYAN + "Crawling URL %s" % url + Fore.WHITE) 
+    print(Fore.CYAN + "Crawling URL %s" % newurl + Fore.WHITE) 
     try:       
-        response = requests.get(url, timeout=3)
+        response = requests.get(newurl, timeout=3)
         done = True
     except requests.exceptions.ConnectionError as e:
         print(Back.RED + "[ERROR]Connection Error:" + Back.BLACK)
