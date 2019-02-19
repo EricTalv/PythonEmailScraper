@@ -95,7 +95,7 @@ def end_scene():
 while len(unprocessed_urls):
 
     # Remove unwanted items
-    unprocessed_urls = {url for url in unprocessed_urls if not any(blocker in url for blocker in blockers)}
+    unprocessed_urls = deque({url for url in unprocessed_urls if not any(blocker in url for blocker in blockers)})
 
 
     # move next url from the queue to the set of processed urls
