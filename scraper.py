@@ -20,9 +20,6 @@ print(Back.BLUE + "|~~~~Email Scraper v2~~~~|" )
 starting_url = input("Enter Website Link to Scrape: ")
 print("Starting scraper.." + Back.BLACK)
 
-# start timer
-start_time = time.time()
-
 # Blockers
 blockers = set(line.strip() for line in open('blocked_sites.txt'))
 
@@ -34,6 +31,10 @@ processed_urls = set()
 
 # a set of fetched emails
 emails = set()
+
+# AutoSaver
+def autosave():
+    
 
 # KeyboardInterrupt Handler
 def signal_handler(sig, frame):
