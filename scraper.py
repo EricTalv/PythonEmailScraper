@@ -23,6 +23,10 @@ print("Starting scraper.." + Back.BLACK)
 # site_blockers
 site_blockers = set(line.strip() for line in open('blocked_sites.txt'))
 
+# email_blockers
+email_blockers = set(line.strip() for line in open('blocked_emails.txt'))
+
+
 
 
 # a queue of urls to be crawled
@@ -101,7 +105,7 @@ def end_scene():
 while len(unprocessed_urls):
 
     # Remove unwanted items
-    unprocessed_urls = deque({url for url in unprocessed_urls if not any(blocker in url for blocker in site_blockers)})
+    unprocessed_urls = deque({url for url in unprocessed_urls if not any(site_blocker in url for site_blocker in site_blockers)})
 
 
     # move next url from the queue to the set of processed urls
@@ -155,7 +159,6 @@ while len(unprocessed_urls):
             
 
     # extract all email addresses and add them into the resulting set
-    # You may edit the regular expression as per your requirement
     new_emails = set(re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", response.text, re.I))
     emails.update(new_emails)
 
