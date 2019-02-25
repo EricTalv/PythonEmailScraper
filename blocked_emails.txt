@@ -1,6 +1,2 @@
-facebook
-youtube
-vikipeedia
-wikipedia
-twitter
-google
+.jpg
+.png

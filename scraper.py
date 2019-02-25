@@ -26,9 +26,6 @@ site_blockers = set(line.strip() for line in open('blocked_sites.txt'))
 # email_blockers
 email_blockers = set(line.strip() for line in open('blocked_emails.txt'))
 
-
-
-
 # a queue of urls to be crawled
 unprocessed_urls = deque([starting_url])
 
@@ -107,7 +104,6 @@ while len(unprocessed_urls):
     # Remove unwanted items
     unprocessed_urls = deque({url for url in unprocessed_urls if not any(site_blocker in url for site_blocker in site_blockers)})
 
-
     # move next url from the queue to the set of processed urls
     newurl = unprocessed_urls.popleft()
     processed_urls.add(newurl)
@@ -160,6 +156,7 @@ while len(unprocessed_urls):
 
     # extract all email addresses and add them into the resulting set
     new_emails = set(re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", response.text, re.I))
+    new_emails = [url for url in unprocessed_urls if not any(site_blocker in url for site_blocker in site_blockers)]
     emails.update(new_emails)
 
     if len(new_emails) is 0:
