@@ -35,10 +35,6 @@ processed_urls = set()
 # a set of fetched emails
 emails = set()
 
-# AutoSaver
-def autosave():
-    
-
 # KeyboardInterrupt Handler
 def signal_handler(sig, frame):
     end_scene()
@@ -156,7 +152,8 @@ while len(unprocessed_urls):
 
     # extract all email addresses and add them into the resulting set
     new_emails = set(re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", response.text, re.I))
-    new_emails = [url for url in unprocessed_urls if not any(site_blocker in url for site_blocker in site_blockers)]
+    # Remove any blocked emails
+    new_emails = [email for email in new_emails if not any(email_blocker in url for email_blocker in email_blockers)]
     emails.update(new_emails)
 
     if len(new_emails) is 0:
