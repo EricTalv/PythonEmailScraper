@@ -153,7 +153,7 @@ while len(unprocessed_urls):
     # extract all email addresses and add them into the resulting set
     new_emails = set(re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", response.text, re.I))
     # Remove any blocked emails
-    new_emails = [email for email in new_emails if not any(email_blocker in url for email_blocker in email_blockers)]
+    new_emails = [email for email in new_emails if not any(email_blocker in email for email_blocker in email_blockers)]
     emails.update(new_emails)
 
     if len(new_emails) is 0:
