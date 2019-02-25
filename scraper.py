@@ -20,8 +20,10 @@ print(Back.BLUE + "|~~~~Email Scraper v2~~~~|" )
 starting_url = input("Enter Website Link to Scrape: ")
 print("Starting scraper.." + Back.BLACK)
 
-# Blockers
-blockers = set(line.strip() for line in open('blocked_sites.txt'))
+# site_blockers
+site_blockers = set(line.strip() for line in open('blocked_sites.txt'))
+
+
 
 # a queue of urls to be crawled
 unprocessed_urls = deque([starting_url])
@@ -99,7 +101,7 @@ def end_scene():
 while len(unprocessed_urls):
 
     # Remove unwanted items
-    unprocessed_urls = deque({url for url in unprocessed_urls if not any(blocker in url for blocker in blockers)})
+    unprocessed_urls = deque({url for url in unprocessed_urls if not any(blocker in url for blocker in site_blockers)})
 
 
     # move next url from the queue to the set of processed urls
