@@ -7,7 +7,7 @@ An email webscraper to scrape multiple links for a huge array of emails.
 All of the scraping is done in `scrape.py`. 
 
 Recommended use:
- + start scraper with `cmd` and run `root\.scraper`
+ + start scraper with `cmd` and run `<root-path>\.scraper`
 
 # Theory
 
