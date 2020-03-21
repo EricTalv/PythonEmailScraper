@@ -38,5 +38,5 @@ SCRAPER <- Feed it a link
 3.Take new links and scan them for more emails & links 
   |
   ▼
-4.Repeate til no new links or emailes are found
+4.Repeate til no new links or emails are found
 </pre>
