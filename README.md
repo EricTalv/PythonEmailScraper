@@ -1,6 +1,6 @@
 # PythonWebScraper
 
-An email webscraper to scrape multiple links for a huge array of emails.
+This is an email webscraper to scrape multiple links for a huge array of emails.
 
 # How to use 
 
