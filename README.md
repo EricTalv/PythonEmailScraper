@@ -25,7 +25,7 @@ pip install:
 SCRAPER <- Feed it a link
    |
    ▼
-1.Scan for more `<a>` links
+1.Scan for more ```<a>``` links
   |     |
   |     |
   |     ▼
