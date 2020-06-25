@@ -9,6 +9,14 @@ All of the scraping is done in `scrape.py`.
 Recommended use
  + start scraper with `cmd` and run `<root-path>\.scraper.py`
 
+#### blocked_emails.txt
+
+You might find some emails re-occuring, or maybe you just need to block some "strings", yeah this isnt only for blocking emails but you can also block any type of string necessary
+
+#### blocked_sites.txt
+
+Some sites might be a bit too bulky to crawl thus it will stall the scraper, or some sites have a "gotcha" feature that is meant to stall the scraper, best to block these sites here. 
+
 # Install modules:
 
 pip install:
